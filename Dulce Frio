@@ -1,191 +1,86 @@
-import tkinter as tk
+import tkinter as tk  # Importa la librería para crear la interfaz gráfica
+import os             # Importa funciones del sistema para trabajar con archivos
 
+# Lista de sabores disponibles
 sabores = ["Chocolate", "Vainilla", "Frutilla", "Dulce de leche", "Pistacho"]
-
-vars = []
-
-precio = 700
-id_venta = 1
-
+vars = [] # Lista vacía para guardar los estados (0 o 1) de los Checkbuttons
+precio = 700 # Precio fijo por cada bocha de helado
+id_venta = 1 # Contador para identificar cada número de venta
 
 def mostrar():
-
-    for s in sabores:
-
-        v = tk.IntVar()
-        vars.append(v)
-
-        tk.Checkbutton(
-            ventana,
-            text=s,
-            variable=v,
-            bg="#CFEFFF",
-            fg="#B03060",
-            font=("Sans", 12)
-        ).pack()
-
+    for s in sabores: # Recorre la lista de sabores
+        v = tk.IntVar() # Crea una variable entera para rastrear si se marca el sabor
+        vars.append(v) # Guarda esa variable en la lista 'vars'
+        # Crea el cuadradito de selección con el nombre del sabor
+        tk.Checkbutton(ventana, text=s, variable=v).pack()
 
 def limpiar():
-
-    for v in vars:
-        v.set(0)
-
-    bochas_var.set(0)
-    resultado.config(text="")
-
+    for v in vars: # Recorre todas las variables de los sabores
+        v.set(0) # Las desmarca todas
+    bochas_var.set(0) # Desmarca la opción de cantidad de bochas
+    resultado.config(text="") # Borra el texto de la etiqueta de resultados
 
 def guardar(bochas, lista, total):
-
-    global id_venta
-
-    archivo = open("ventas.txt", "a")
-
-    texto = "ID: " + str(id_venta) + " | "
-    texto += "Bochas: " + str(bochas) + " | "
-    texto += "Sabores: "
-
-    for s in lista:
-        texto += s + " "
-
-    texto += "| Total: $" + str(total) + "\n"
-
-    archivo.write(texto)
-    archivo.close()
-
-    id_venta = id_venta + 1
-
+    global id_venta # Permite modificar la variable id_venta que está fuera
+    archivo = open("ventas.txt", "a") # Abre el archivo en modo "append" (añadir al final)
+    # Crea una línea de texto con toda la información de la compra
+    texto = f"ID: {id_venta} | Bochas: {bochas} | Sabores: {' '.join(lista)} | Total: ${total}\n"
+    archivo.write(texto) # Escribe la línea en el archivo de texto
+    archivo.close() # Cierra el archivo para guardar los cambios
+    id_venta += 1 # Aumenta el ID para la próxima venta
 
 def ver_ventas():
-
-    try:
-        archivo = open("ventas.txt", "r")
-
-        contenido = ""
-        for linea in archivo:
-            contenido = contenido + linea
-
-        archivo.close()
-
-        resultado.config(text=contenido)
-
-    except:
-        resultado.config(text="No hay ventas todavía")
-
+    if os.path.exists("ventas.txt"):     # Verifica si el archivo existe en la carpeta
+        archivo = open("ventas.txt", "r")# Abre el archivo en modo "read" (lectura)
+        contenido = archivo.read()       # Lee todo el texto que tiene adentro
+        archivo.close()                  # Cierra el archivo
+        resultado.config(text=contenido) # Muestra el historial en la etiqueta 'resultado'
+    else:
+        resultado.config(text="No hay ventas registradas") # Mensaje si el archivo no existe
 
 def calcular():
-
-    bochas = bochas_var.get()
-
-    if bochas == 0:
+    bochas = bochas_var.get() # Obtiene el número de bochas seleccionado (1, 2 o 3)
+    
+    if bochas == 0: # Si no marcó ninguna opción de bochas
         resultado.config(text="Elegí cantidad de bochas")
-        return
+        return # Sale de la función y no sigue ejecutando
 
-    cantidad = 0
-    elegidos = []
+    elegidos = [] # Lista para guardar los nombres de sabores marcados
+    for i in range(len(vars)): # Recorre la lista de variables
+        if vars[i].get() == 1: # Si el sabor está marcado (es igual a 1)
+            elegidos.append(sabores[i]) # Agrega el nombre del sabor a la lista 'elegidos'
 
-    i = 0
-    for v in vars:
-
-        if v.get() == 1:
-            cantidad = cantidad + 1
-            elegidos.append(sabores[i])
-
-        i = i + 1
-
-    if cantidad > bochas:
-        resultado.config(text="No podés elegir más sabores que bochas")
-
+    # Verifica si la cantidad de sabores marcados coincide con las bochas elegidas
+    if len(elegidos) != bochas:
+        resultado.config(text="La cantidad de sabores no coincide con las bochas")
     else:
-        if cantidad < bochas:
-            resultado.config(text="Te faltan sabores")
+        total = bochas * precio # Calcula el precio total
+        guardar(bochas, elegidos, total) # Llama a la función para guardar en el archivo
+        resultado.config(text=f"Venta Guardada: ${total}") # Muestra confirmación
 
-        else:
+# Configuración de la ventana principal
+ventana = tk.Tk() # Crea la base de la aplicación
+ventana.title("Heladería") # Le pone título a la ventana
+ventana.geometry("300x550") # Define el tamaño (ancho x alto)
 
-            total = bochas * precio
+tk.Label(ventana, text="--- HELADERIA ---").pack() # Título visual arriba
 
-            guardar(bochas, elegidos, total)
+bochas_var = tk.IntVar() # Variable para saber qué Radiobutton se eligió
+# Opciones circulares para elegir la cantidad de bochas
+tk.Radiobutton(ventana, text="1 Bocha", variable=bochas_var, value=1).pack()
+tk.Radiobutton(ventana, text="2 Bochas", variable=bochas_var, value=2).pack()
+tk.Radiobutton(ventana, text="3 Bochas", variable=bochas_var, value=3).pack()
 
-            texto = "Compra guardada\n"
-            texto += "Bochas: " + str(bochas) + "\n"
-            texto += "Sabores: "
+tk.Label(ventana, text="--- Sabores ---").pack() # Separador visual
+mostrar() # Llama a la función para crear los Checkbuttons de sabores
 
-            for s in elegidos:
-                texto += s + " "
+# Botones de acción que llaman a sus respectivas funciones
+tk.Button(ventana, text="Calcular y Guardar", command=calcular).pack(pady=5)
+tk.Button(ventana, text="Ver historial", command=ver_ventas).pack(pady=5)
+tk.Button(ventana, text="Borrar selección", command=limpiar).pack(pady=5)
 
-            texto += "\nTotal: $" + str(total)
-
-            resultado.config(text=texto)
-
-
-ventana = tk.Tk()
-ventana.title("Dulce Frio")
-ventana.geometry("300x600")
-ventana.configure(bg="#CFEFFF")
-
-tk.Label(
-    ventana,
-    text="Dulce Frio",
-    bg="#CFEFFF",
-    fg="#B03060",
-    font=("Sans", 16)
-).pack()
-
-bochas_var = tk.IntVar()
-
-tk.Radiobutton(ventana, text="1 bocha", variable=bochas_var, value=1,
-               bg="#CFEFFF", fg="#B03060", font=("Sans", 12)).pack()
-
-tk.Radiobutton(ventana, text="2 bochas", variable=bochas_var, value=2,
-               bg="#CFEFFF", fg="#B03060", font=("Sans", 12)).pack()
-
-tk.Radiobutton(ventana, text="3 bochas", variable=bochas_var, value=3,
-               bg="#CFEFFF", fg="#B03060", font=("Sans", 12)).pack()
-
-tk.Label(
-    ventana,
-    text="Sabores",
-    bg="#CFEFFF",
-    fg="#B03060",
-    font=("Sans", 13)
-).pack()
-
-mostrar()
-
-tk.Button(
-    ventana,
-    text="Calcular",
-    command=calcular,
-    bg="#CFEFFF",
-    fg="#B03060",
-    font=("Sans", 12)
-).pack(pady=5)
-
-tk.Button(
-    ventana,
-    text="Limpiar",
-    command=limpiar,
-    bg="#CFEFFF",
-    fg="#B03060",
-    font=("Sans", 12)
-).pack(pady=5)
-
-tk.Button(
-    ventana,
-    text="Ver ventas",
-    command=ver_ventas,
-    bg="#CFEFFF",
-    fg="#B03060",
-    font=("Sans", 12)
-).pack(pady=5)
-
-resultado = tk.Label(
-    ventana,
-    text="",
-    bg="#CFEFFF",
-    fg="#B03060",
-    font=("Sans", 11),
-    wraplength=250
-)
+# Etiqueta vacía donde aparecerán los mensajes o el historial de ventas
+resultado = tk.Label(ventana, text="", wraplength=250)
 resultado.pack()
 
-ventana.mainloop()
+ventana.mainloop() # Mantiene la ventana abierta esperando acciones
