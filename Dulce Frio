@@ -1,59 +1,59 @@
-import tkinter as tk # Librería para hacer interfaces gráficas
-import os # Para trabajar con archivos
+import tkinter as tk   # Librería para hacer interfaces gráficas
+import os              # Para trabajar con archivos
 
 # Lista de sabores disponibles
 sabores = ["Chocolate", "Vainilla", "Frutilla", "Dulce de leche", "Pistacho"]
 
-vars = [] # Lista donde se guardan las variables de los Checkbuttons
-id_venta = 1 # Contador de ventas
+vars = []      # Lista donde se guardan las variables de los Checkbuttons
+id_venta = 1   # Contador de ventas
 
 
 # Función que muestra los sabores como Checkbuttons
 def mostrar():
-    for s in sabores:# Recorre cada sabor
-        v = tk.IntVar() # Variable que guarda si está marcado (1) o no (0)
-        vars.append(v) # Se guarda en la lista
+    for s in sabores:          # Recorre cada sabor
+        v = tk.IntVar()        # Variable que guarda si está marcado (1) o no (0)
+        vars.append(v)         # Se guarda en la lista
         tk.Checkbutton(ventana, text=s, variable=v).pack()  # Se crea el checkbox
 
 
 # Función para limpiar selección
 def limpiar():
-    for v in vars: # Recorre todos los checkbuttons
-        v.set(0) # Los desmarca
-    bochas_var.set(0) # Quita la selección de bochas
-    resultado.config(text="") # Borra el resultado
-    precio_label.config(text="") # Borra el precio mostrado
+    for v in vars:   # Recorre todos los checkbuttons
+        v.set(0)     # Los desmarca
+    bochas_var.set(0)  # Quita la selección de bochas
+    resultado.config(text="")   # Borra el resultado
+    precio_label.config(text="")  # Borra el precio mostrado
 
 
 # Función para guardar la venta en un archivo
 def guardar(bochas, lista, total):
-    global id_venta # Permite modificar la variable global
+    global id_venta   # Permite modificar la variable global
 
-    archivo = open("ventas.txt", "a") # Abre archivo para agregar datos
+    archivo = open("ventas.txt", "a")  # Abre archivo para agregar datos
 
     # Crea el texto con los datos de la venta
     texto = f"ID: {id_venta} | Bochas: {bochas} | Sabores: {' '.join(lista)} | Total: ${total}\n"
 
-    archivo.write(texto) # Escribe en el archivo
-    archivo.close() # Cierra el archivo
+    archivo.write(texto)  # Escribe en el archivo
+    archivo.close()       # Cierra el archivo
 
-    id_venta += 1 # Aumenta el ID para la siguiente venta
+    id_venta += 1  # Aumenta el ID para la siguiente venta
 
 
 # Función para ver historial de ventas
 def ver_ventas():
-    if os.path.exists("ventas.txt"): # Si el archivo existe
-        archivo = open("ventas.txt", "r") # Lo abre en modo lectura
-        contenido = archivo.read() # Lee todo
-        archivo.close() # Cierra
-        resultado.config(text=contenido) # Muestra el contenido
+    if os.path.exists("ventas.txt"):   # Si el archivo existe
+        archivo = open("ventas.txt", "r")  # Lo abre en modo lectura
+        contenido = archivo.read()         # Lee todo
+        archivo.close()                   # Cierra
+        resultado.config(text=contenido)  # Muestra el contenido
     else:
-        resultado.config(text="No hay ventas registradas") # Si no existe
+        resultado.config(text="No hay ventas registradas")  # Si no existe
 
 
 # Función para mostrar el precio según bochas
 def actualizar_precio():
-    bochas = bochas_var.get() # Obtiene la cantidad elegida
+    bochas = bochas_var.get()  # Obtiene la cantidad elegida
 
     if bochas == 1:
         precio_label.config(text="Precio: $700")
@@ -62,23 +62,23 @@ def actualizar_precio():
     elif bochas == 3:
         precio_label.config(text="Precio: $1600")
     else:
-        precio_label.config(text="") # Si no eligió nada
+        precio_label.config(text="")  # Si no eligió nada
 
 
 # Función principal para calcular el pedido
 def calcular():
-    bochas = bochas_var.get() # Obtiene cantidad de bochas
+    bochas = bochas_var.get()  # Obtiene cantidad de bochas
 
     # Si no eligió bochas
     if bochas == 0:
         resultado.config(text="Elegí cantidad de bochas")
         return
 
-    elegidos = [] # Lista de sabores elegidos
+    elegidos = []  # Lista de sabores elegidos
 
     # Recorre todos los checkbuttons
     for i in range(len(vars)):
-        if vars[i].get() == 1: # Si está marcado
+        if vars[i].get() == 1:          # Si está marcado
             elegidos.append(sabores[i]) # Guarda el sabor
 
     # Validación: cantidad de sabores debe coincidir con bochas
@@ -94,7 +94,7 @@ def calcular():
         else:
             total = 1600
 
-        guardar(bochas, elegidos, total) # Guarda la venta
+        guardar(bochas, elegidos, total)  # Guarda la venta
 
         # Muestra resultado
         resultado.config(text=f"Venta Guardada: ${total}")
@@ -102,9 +102,9 @@ def calcular():
 
 # ----------- VENTANA -----------
 
-ventana = tk.Tk() # Crea la ventana principal
-ventana.title("Dulce Frio") # Título de la ventana
-ventana.geometry("300x600") # Tamaño
+ventana = tk.Tk()                 # Crea la ventana principal
+ventana.title("Dulce Frio")       # Título de la ventana
+ventana.geometry("300x600")       # Tamaño
 
 # Título visual
 tk.Label(ventana, text="--- DULCE FRIO ---").pack()
@@ -123,7 +123,7 @@ precio_label.pack()
 # Título de sabores
 tk.Label(ventana, text="--- Sabores ---").pack()
 
-mostrar() # Muestra los sabores
+mostrar()  # Muestra los sabores
 
 # Botones
 tk.Button(ventana, text="Calcular y Guardar", command=calcular).pack(pady=5)
@@ -134,5 +134,4 @@ tk.Button(ventana, text="Borrar selección", command=limpiar).pack(pady=5)
 resultado = tk.Label(ventana, text="", wraplength=250)
 resultado.pack()
 
-ventana.mainloop() # Mantiene la ventana abierta
-
+ventana.mainloop()  # Mantiene la ventana abierta
