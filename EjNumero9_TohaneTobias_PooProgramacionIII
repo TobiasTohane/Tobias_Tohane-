@@ -1,0 +1,74 @@
+import random
+
+class Cofre:
+
+    def __init__(self):
+        self.abierto = 0   # 0 = cerrado, 1 = abierto
+        self.monedas = random.randint(10,50)
+
+    def abrir(self):
+        if self.abierto == 0:
+            self.abierto = 1
+            print("abriste el cofre")
+        else:
+            print("ya lo habias abierto")
+
+    def ver(self):
+        if self.abierto == 1:
+            print("cofre abierto -> monedas:", self.monedas)
+        else:
+            print("cofre cerrado")
+
+
+class Explorador:
+
+    def __init__(self):
+        self.nombre = input("nombre del jugador: ")
+        self.monedas = 0
+
+    def agarrar(self, cofre):
+        if cofre.abierto == 1:
+            if cofre.monedas > 0:
+                print("agarraste", cofre.monedas, "monedas")
+                self.monedas = self.monedas + cofre.monedas
+                cofre.monedas = 0
+            else:
+                print("no hay mas monedas")
+        else:
+            print("no podes, esta cerrado")
+
+    def ver(self):
+        print("jugador:", self.nombre)
+        print("total monedas:", self.monedas)
+
+
+print("TESORO ESCONDIDO")
+
+jugador = Explorador()
+cofre = Cofre()
+
+opcion = ""
+
+while opcion != "4":
+
+    print("\n--- estado ---")
+    jugador.ver()
+    cofre.ver()
+
+    print("\n1 abrir cofre")
+    print("2 agarrar monedas")
+    print("3 seguir explorando")
+    print("4 salir")
+
+    opcion = input("elegir: ")
+
+    if opcion == "1":
+        cofre.abrir()
+
+    if opcion == "2":
+        jugador.agarrar(cofre)
+
+    if opcion == "3":
+        print("vas a otro lugar...")
+        cofre = Cofre()
+print("termino la exploracion")

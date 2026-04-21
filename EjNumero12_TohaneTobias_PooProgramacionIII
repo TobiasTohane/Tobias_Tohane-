@@ -1,0 +1,73 @@
+import random
+
+class Aventurero:
+
+    def __init__(self):
+        self.nombre = input("nombre: ")
+        self.objetos = []
+
+    def guardar(self, obj):
+        self.objetos.append(obj)
+        print("guardaste:", obj)
+
+    def usar(self, obj):
+        if obj in self.objetos:
+            print("usaste:", obj)
+            self.objetos.remove(obj)
+        else:
+            print("no lo tenes")
+
+    def tirar(self, obj):
+        if obj in self.objetos:
+            self.objetos.remove(obj)
+            print("tiraste:", obj)
+        else:
+            print("no lo tenes")
+
+    def ver(self):
+        print("inventario:", self.objetos)
+
+
+print("AVENTURA Y OBJETOS")
+
+j = Aventurero()
+
+lista_obj = ["espada", "pocion", "escudo", "anillo", "gema"]
+
+op = ""
+
+while op != "5":
+
+    print("\n--- estado ---")
+    j.ver()
+
+    print("\n1 encontrar objeto")
+    print("2 usar objeto")
+    print("3 tirar objeto")
+    print("4 ver inventario")
+    print("5 salir")
+
+    op = input("opcion: ")
+
+    if op == "1":
+        obj = random.choice(lista_obj)
+        print("encontraste:", obj)
+
+        print("1 guardar")
+        print("2 descartar")
+
+        op2 = input("que haces: ")
+
+        if op2 == "1":
+            j.guardar(obj)
+        else:
+            print("lo dejaste")
+
+    if op == "2":
+        obj = input("que queres usar: ")
+        j.usar(obj)
+
+    if op == "3":
+        obj = input("que queres tirar: ")
+        j.tirar(obj)
+print("Fin de la aventura")

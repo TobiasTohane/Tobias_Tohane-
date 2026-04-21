@@ -1,0 +1,69 @@
+import random
+
+class Hechicero:
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.vida = 100
+        self.mana = 50
+
+    def atacar(self, enemigo):
+        daño = random.randint(5,10)
+        enemigo.vida = enemigo.vida - daño
+        print(self.nombre, "ataca y hace", daño)
+
+    def magia(self, enemigo):
+        if self.mana >= 10:
+            daño = random.randint(15,25)
+            enemigo.vida = enemigo.vida - daño
+            self.mana = self.mana - 10
+            print(self.nombre, "usa magia y hace", daño)
+        else:
+            print("no tenes mana")
+
+    def ver(self):
+        print(self.nombre, "vida:", self.vida, "mana:", self.mana)
+
+
+print("BATALLA DE HECHICEROS")
+
+# jugador
+nombre = input("nombre: ")
+j = Hechicero(nombre)
+
+# enemigo
+e = Hechicero("enemigo")
+
+while j.vida > 0 and e.vida > 0:
+
+    print("\n--- estado ---")
+    j.ver()
+    e.ver()
+
+    print("\n1 atacar")
+    print("2 magia")
+
+    op = input("opcion: ")
+
+    if op == "1":
+        j.atacar(e)
+
+    if op == "2":
+        j.magia(e)
+
+    # turno enemigo
+    if e.vida > 0:
+        print("\nturno enemigo")
+
+        if e.mana >= 10:
+            e.magia(j)
+        else:
+            e.atacar(j)
+
+
+print("\nFIN")
+
+if j.vida > 0:
+    print("GANASTE")
+else:
+    print("GAME OVER")

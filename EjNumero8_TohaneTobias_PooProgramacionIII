@@ -1,0 +1,71 @@
+import random
+
+# Clase base
+class Personaje:
+
+    def __init__(self, nombre, vida, ataque, defensa):
+        self.nombre = nombre
+        self.vida = vida
+        self.ataque = ataque
+        self.defensa = defensa
+
+    def atacar(self, enemigo):
+        daño = random.randint(1, self.ataque)
+        daño_real = daño - enemigo.defensa
+
+        if daño_real < 0:
+            daño_real = 0
+
+        enemigo.vida = enemigo.vida - daño_real
+
+        print(self.nombre, "ataca a", enemigo.nombre)
+        print("Daño causado:", daño_real)
+
+    def mostrar(self):
+        print("Nombre:", self.nombre)
+        print("Vida:", self.vida)
+        print("Ataque:", self.ataque)
+        print("Defensa:", self.defensa)
+        print("------------------------")
+
+
+# Clase hija
+class Enemigo(Personaje):
+
+    def __init__(self):
+        super().__init__("Enemigo", 100, 15, 5)
+
+
+# BLOQUE PRINCIPAL
+
+print("=== DUELO EN LA ARENA ===")
+
+# Crear jugador
+nombre = input("Ingresa el nombre de tu personaje: ")
+jugador = Personaje(nombre, 100, 20, 8)
+
+# Crear enemigo
+enemigo = Enemigo()
+
+# Combate
+while jugador.vida > 0 and enemigo.vida > 0:
+
+    print("\nTU TURNO")
+    jugador.mostrar()
+    enemigo.mostrar()
+
+    print("1 - Atacar")
+    opcion = input("Elegí una opción: ")
+
+    if opcion == "1":
+        jugador.atacar(enemigo)
+
+    if enemigo.vida > 0:
+        print("\nTURNO DEL ENEMIGO")
+        enemigo.atacar(jugador)
+
+# Resultado final (una sola línea)
+if jugador.vida > 0:
+    print("GANASTE")
+else:
+    print("GAME OVER")

@@ -1,0 +1,56 @@
+import random
+
+class Jugador:
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.puntos = 0
+
+    def tirar(self):
+        dado = random.randint(1,6)
+        self.puntos = self.puntos + dado
+        print(self.nombre, "saco", dado)
+
+    def ver(self):
+        print(self.nombre, "->", self.puntos)
+
+
+print("DESAFIO DE DADOS")
+
+# jugador
+nombre = input("nombre: ")
+j = Jugador(nombre)
+
+# cpu
+cpu1 = Jugador("cpu1")
+cpu2 = Jugador("cpu2")
+
+rondas = 5
+r = 1
+
+while r <= rondas:
+
+    print("\n--- ronda", r, "---")
+
+    input("enter para tirar dado")
+
+    j.tirar()
+
+    cpu1.tirar()
+    cpu2.tirar()
+
+    print("\n--- puntajes ---")
+    j.ver()
+    cpu1.ver()
+    cpu2.ver()
+
+    r = r + 1
+
+
+print("\nFIN DEL JUEGO")
+
+# ver ganador
+if j.puntos > cpu1.puntos and j.puntos > cpu2.puntos:
+    print("GANASTE")
+else:
+    print("GAME OVER")

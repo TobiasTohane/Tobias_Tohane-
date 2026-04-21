@@ -1,0 +1,63 @@
+import random
+
+class Torre:
+
+    def __init__(self):
+        self.vida = 100
+        self.defensa = 5
+
+    def recibir(self):
+        daño = random.randint(10,20)
+        daño_real = daño - self.defensa
+
+        if daño_real < 0:
+            daño_real = 0
+
+        self.vida = self.vida - daño_real
+
+        print("ataque recibido:", daño_real)
+
+    def reparar(self):
+        self.vida = self.vida + 10
+        print("reparaste la torre +10 vida")
+
+    def reforzar(self):
+        self.defensa = self.defensa + 2
+        print("defensa +2")
+
+    def ver(self):
+        print("vida:", self.vida, "defensa:", self.defensa)
+
+
+print("ULTIMA DEFENSA")
+
+t = Torre()
+
+op = ""
+
+while t.vida > 0:
+
+    print("\n--- estado ---")
+    t.ver()
+
+    print("\n1 reparar")
+    print("2 reforzar")
+    print("3 esperar")
+
+    op = input("opcion: ")
+
+    if op == "1":
+        t.reparar()
+
+    if op == "2":
+        t.reforzar()
+
+    if op == "3":
+        print("no hiciste nada")
+
+    print("\nataque enemigo...")
+    t.recibir()
+
+
+print("\nLA TORRE CAYO")
+print("GAME OVER")

@@ -1,0 +1,53 @@
+class Agenda:
+
+    def __init__(self):
+        self.contactos = []
+
+    def añadir(self):
+        nombre = input("Nombre: ")
+        telefono = input("Teléfono: ")
+        email = input("Email: ")
+        self.contactos.append([nombre, telefono, email])
+
+    def lista(self):
+        for c in self.contactos:
+            print(c)
+
+    def buscar(self):
+        nombre = input("Buscar nombre: ")
+        for c in self.contactos:
+            if c[0] == nombre:
+                print(c)
+
+    def editar(self):
+        nombre = input("Nombre a editar: ")
+        for c in self.contactos:
+            if c[0] == nombre:
+                c[1] = input("Nuevo teléfono: ")
+                c[2] = input("Nuevo email: ")
+
+    def menu(self):
+        while True:
+            print("1 Añadir contacto")
+            print("2 Lista de contactos")
+            print("3 Buscar contacto")
+            print("4 Editar contacto")
+            print("5 Cerrar agenda")
+
+            op = input("Opción: ")
+
+            if op == "1":
+                self.añadir()
+            elif op == "2":
+                self.lista()
+            elif op == "3":
+                self.buscar()
+            elif op == "4":
+                self.editar()
+            elif op == "5":
+                break
+
+
+# Programa principal
+a = Agenda()
+a.menu()

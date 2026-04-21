@@ -1,0 +1,71 @@
+import random
+
+class Auto:
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.pos = 0
+
+    def avanzar(self, valor):
+        self.pos = self.pos + valor
+
+    def ver(self):
+        print(self.nombre, "--->", self.pos)
+
+
+print("GRAN CARRERA")
+
+# jugador
+nombre = input("nombre de tu auto: ")
+jugador = Auto(nombre)
+
+# enemigos
+cpu1 = Auto("Auto1")
+cpu2 = Auto("Auto2")
+
+meta = 100
+ganador = ""
+
+while ganador == "":
+
+    print("\n--- posiciones ---")
+    jugador.ver()
+    cpu1.ver()
+    cpu2.ver()
+
+    print("\n1 acelerar fuerte")
+    print("2 acelerar normal")
+
+    op = input("opcion: ")
+
+    if op == "1":
+        avance = random.randint(10,20)
+        print("aceleraste fuerte:", avance)
+        jugador.avanzar(avance)
+
+    if op == "2":
+        avance = random.randint(5,10)
+        print("aceleraste normal:", avance)
+        jugador.avanzar(avance)
+
+    # autos cpu
+    cpu1.avanzar(random.randint(5,15))
+    cpu2.avanzar(random.randint(5,15))
+
+    # verificar ganador
+    if jugador.pos >= meta:
+        ganador = jugador.nombre
+
+    if cpu1.pos >= meta:
+        ganador = cpu1.nombre
+
+    if cpu2.pos >= meta:
+        ganador = cpu2.nombre
+
+
+print("\nFIN DE LA CARRERA")
+
+if ganador == jugador.nombre:
+    print("GANASTE")
+else:
+    print("GAME OVER, gano", ganador)
