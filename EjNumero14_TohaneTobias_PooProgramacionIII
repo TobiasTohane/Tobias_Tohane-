@@ -14,7 +14,6 @@ class Torre:
             daño_real = 0
 
         self.vida = self.vida - daño_real
-
         print("ataque recibido:", daño_real)
 
     def reparar(self):
@@ -32,13 +31,19 @@ class Torre:
 print("ULTIMA DEFENSA")
 
 t = Torre()
+turnos = 0
+meta = 10   # turnos para ganar
 
 op = ""
 
 while t.vida > 0:
 
+    if turnos >= meta:
+        break
+
     print("\n--- estado ---")
     t.ver()
+    print("turno:", turnos)
 
     print("\n1 reparar")
     print("2 reforzar")
@@ -58,6 +63,14 @@ while t.vida > 0:
     print("\nataque enemigo...")
     t.recibir()
 
+    turnos = turnos + 1
 
-print("\nLA TORRE CAYO")
-print("GAME OVER")
+
+print("\n--- RESULTADO ---")
+
+if t.vida > 0:
+    print("SOBREVIVISTE")
+    print("GANASTE")
+else:
+    print("LA TORRE CAYO")
+    print("GAME OVER")
