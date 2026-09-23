@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<!-- saved from url=(0090)file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio1_ProgPaginaWeb.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café con Aroma</title>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Roboto:wght@300;400&display=swap');
+
+        
+        :root {
+            --fondo-suave: #FDF8F5;
+            --marron-oscuro: #4A3B32;
+            --marron-claro: #8C6B5D;
+            --acento: #D4A373;
+        }
+
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--fondo-suave);
+            color: var(--marron-oscuro);
+            margin: 0;
+            padding: 0;
+        }
+
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        
+        header {
+            background-color: var(--marron-oscuro);
+            color: var(--fondo-suave);
+            text-align: center;
+            padding: 2.5rem 1rem;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: var(--acento);
+        }
+
+        header p {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        
+        nav {
+            background-color: var(--marron-claro);
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--marron-oscuro);
+        }
+
+        
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            background-color: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        section h2 {
+            color: var(--marron-claro);
+            border-bottom: 2px solid var(--acento);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        
+        .contenedor-menu {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .producto {
+            flex: 1;
+            min-width: 200px;
+            background-color: var(--fondo-suave);
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #efe4dc;
+        }
+
+        .icono-producto {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .producto h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--marron-oscuro);
+        }
+
+       
+        footer {
+            background-color: var(--marron-oscuro);
+            color: var(--fondo-suave);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .redes-sociales a {
+            color: var(--acento);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-weight: bold;
+        }
+
+        .redes-sociales a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">☕</div>
+        <h1>Café con Aroma</h1>
+        <p>Tu refugio cálido, en cada taza</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio1_ProgPaginaWeb.html#inicio">Inicio</a></li>
+            <li><a href="file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio1_ProgPaginaWeb.html#menu">Menú</a></li>
+            <li><a href="file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio1_ProgPaginaWeb.html#nosotros">Nosotros</a></li>
+            <li><a href="file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio1_ProgPaginaWeb.html#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        
+        <section id="inicio">
+            <h2>Bienvenidos a nuestra cafetería</h2>
+            <p>En <strong>Café con Aroma</strong>, creemos que los mejores momentos se comparten alrededor de una buena mesa. Somos un pequeño rincón cálido y agradable, diseñado para que te relajes y disfrutes de granos seleccionados con la mejor calidad. Nuestro objetivo es hacerte sentir como en casa, ofreciéndote un ambiente de paz y el inconfundible aroma del café recién molido.</p>
+        </section>
+
+       
+        <section id="menu">
+            <h2>Menú Destacado</h2>
+            <div class="contenedor-menu">
+                
+                <div class="producto">
+                    <span class="icono-producto">☕</span>
+                    <h3>Café</h3>
+                    <p>Clásico e intenso. Nuestro espresso de la casa preparado a la perfección.</p>
+                </div>
+
+                <div class="producto">
+                    <span class="icono-producto">🥛</span>
+                    <h3>Capuccino</h3>
+                    <p>La medida exacta de café, leche vaporizada y una suave capa de espuma.</p>
+                </div>
+
+                <div class="producto">
+                    <span class="icono-producto">🥐</span>
+                    <h3>Medialunas</h3>
+                    <p>Recién horneadas cada mañana. El acompañamiento dulce ideal.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto">
+        <p><strong>Ubicación:</strong> Calle Falsa 123, Tu Ciudad</p>
+        <p>Encontranos en nuestras redes sociales:</p>
+        <div class="redes-sociales">
+            <a href="file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio1_ProgPaginaWeb.html#">Instagram</a> | 
+            <a href="file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio1_ProgPaginaWeb.html#">Facebook</a> | 
+            <a href="file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio1_ProgPaginaWeb.html#">TikTok</a>
+        </div>
+    </footer>
+
+
+</body></html>

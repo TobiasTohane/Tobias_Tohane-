@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecnoStore</title>
+    <style>
+        /* COLORES TECNOLÓGICOS (Gris / Azul) */
+        :root {
+            --azul-oscuro: #0a192f;
+            --azul-medio: #112240;
+            --azul-claro: #64ffda;
+            --gris-claro: #ccd6f6;
+            --gris-fondo: #f8f9fa;
+            --gris-borde: #dee2e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--gris-fondo);
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* HEADER Y LOGO */
+        header {
+            background-color: var(--azul-oscuro);
+            color: var(--gris-claro);
+            text-align: center;
+            padding: 2rem 1rem;
+            border-bottom: 3px solid var(--azul-claro);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--azul-claro);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: normal;
+            color: var(--gris-claro);
+            margin-top: 5px;
+        }
+
+        /* NAV */
+        nav {
+            background-color: var(--azul-medio);
+            position: sticky;
+            top: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 1rem 2rem;
+            color: var(--gris-claro);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--azul-claro);
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section h2 {
+            color: var(--azul-oscuro);
+            border-bottom: 2px solid var(--azul-claro);
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* CUADRÍCULA SIMPLE (GRID) - REQUISITO */
+        .contenedor-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        /* BORDES EN LOS PRODUCTOS - REQUISITO */
+        article {
+            background-color: white;
+            border: 1px solid var(--gris-borde);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        article:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+        article h3 {
+            color: var(--azul-oscuro);
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        article p {
+            color: #666666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            min-height: 60px;
+        }
+
+        .precio {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--azul-medio);
+            margin-top: 1rem;
+        }
+
+        /* SECCIÓN: OFERTA ESPECIAL */
+        .oferta-especial {
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-medio));
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed var(--azul-claro);
+            margin-bottom: 3rem;
+        }
+
+        .oferta-especial h2 {
+            color: var(--azul-claro);
+            border-bottom: none;
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+        }
+
+        .oferta-especial .precio-oferta {
+            font-size: 2rem;
+            color: var(--azul-claro);
+            font-weight: bold;
+            display: block;
+            margin-top: 1rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--azul-oscuro);
+            color: var(--gris-claro);
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        .icono-footer {
+            color: var(--azul-claro);
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="inicio">
+        <div class="logo">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #64ffda;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            TecnoStore
+        </div>
+        <h1>Tu mundo digital al mejor precio</h1>
+    </header>
+
+    <!-- Nav -->
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#ofertas">Ofertas</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <main>
+        <!-- Section: Productos -->
+        <section id="productos">
+            <h2>Nuestros Productos</h2>
+            <div class="contenedor-productos">
+                
+                <article>
+                    <h3>Notebook Pro 15"</h3>
+                    <p>Procesador Intel Core i7, 16GB RAM, 512GB SSD. Ideal para trabajo exigente y diseño.</p>
+                    <span class="precio">$850.000</span>
+                </article>
+
+                <article>
+                    <h3>Celular X-Max</h3>
+                    <p>Pantalla OLED de 6.7", cámara de 108MP, batería de 5000mAh con carga súper rápida.</p>
+                    <span class="precio">$420.000</span>
+                </article>
+
+                <article>
+                    <h3>Auriculares Quantum</h3>
+                    <p>Cancelación de ruido activa, conexión Bluetooth 5.2 y hasta 30 horas de autonomía.</p>
+                    <span class="precio">$85.000</span>
+                </article>
+
+                <article>
+                    <h3>Teclado Mecánico RGB</h3>
+                    <p>Switches red silenciosos, retroiluminación personalizable y diseño ergonómico.</p>
+                    <span class="precio">$45.000</span>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Section: Oferta especial -->
+        <section id="ofertas" class="oferta-especial">
+            <h2>¡Oferta Especial de la Semana!</h2>
+            <h3>Monitor Gamer Curvo 27" 144Hz</h3>
+            <p>Llevate la mejor experiencia visual para tus juegos con un tiempo de respuesta de 1ms y tecnología FreeSync.</p>
+            <span class="precio-oferta">Solo por $210.000</span>
+            <p><small>*Promoción válida hasta agotar stock.</small></p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contacto">
+        <p><span class="icono-footer">🕒</span> <strong>Horarios de atención:</strong> Lunes a Viernes de 09:00 a 18:00 hs | Sábados de 10:00 a 13:00 hs</p>
+        <p><span class="icono-footer">📍</span> <strong>Ubicación:</strong> Av. Tecnológica 1024, Distrito Central</p>
+    </footer>
+
+</body>
+</html>

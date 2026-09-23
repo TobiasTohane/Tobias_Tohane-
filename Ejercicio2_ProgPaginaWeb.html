@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<!-- saved from url=(0090)file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio2_ProgPaginaWeb.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerFit Gimnasio</title>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;600&family=Roboto:wght@300;400;700&display=swap');
+
+        
+        :root {
+            --fondo-oscuro: #121212;
+            --fondo-seccion: #1e1e1e;
+            --texto-claro: #f4f4f4;
+            --acento-deportivo: #d4ff00; /* Amarillo neón */
+            --gris-claro: #aaaaaa;
+        }
+
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--fondo-oscuro);
+            color: var(--texto-claro);
+            margin: 0;
+            padding: 0;
+        }
+
+        
+        h1, h2, h3 {
+            font-family: 'Teko', sans-serif;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0;
+        }
+
+        
+        header {
+            background-color: #000000;
+            padding: 2rem 1rem;
+            border-bottom: 3px solid var(--acento-deportivo);
+        }
+
+        .logo {
+            font-size: 4rem;
+            color: var(--acento-deportivo);
+            text-align: center;
+            margin: 0;
+            font-family: 'Teko', sans-serif;
+            line-height: 1;
+        }
+
+        header p {
+            text-align: center;
+            color: var(--gris-claro);
+            margin: 0.5rem 0 0 0;
+            font-size: 1.2rem;
+        }
+
+        
+        nav {
+            background-color: var(--fondo-seccion);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 1rem 2rem;
+            color: var(--texto-claro);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        
+        nav ul li a:hover {
+            background-color: var(--acento-deportivo);
+            color: #000000;
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: var(--acento-deportivo);
+            margin-bottom: 2rem;
+        }
+
+        
+        .contenedor-clases {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        
+        article {
+            background-color: var(--fondo-seccion);
+            border: 2px solid var(--acento-deportivo);
+            border-radius: 8px;
+            padding: 2rem;
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        article:hover {
+            transform: translateY(-5px);
+        }
+
+        article h3 {
+            font-size: 2rem;
+            color: var(--texto-claro);
+            margin-bottom: 1rem;
+        }
+
+        article p {
+            color: var(--gris-claro);
+            line-height: 1.6;
+        }
+
+        
+        .contenedor-horarios {
+            background-color: var(--fondo-seccion);
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contenedor-horarios ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contenedor-horarios li {
+            padding: 1rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+        }
+
+        .contenedor-horarios li:last-child {
+            border-bottom: none;
+        }
+
+        .dia {
+            font-weight: bold;
+            color: var(--acento-deportivo);
+        }
+
+        
+        footer {
+            background-color: #000000;
+            color: var(--gris-claro);
+            text-align: center;
+            padding: 3rem 1rem;
+            border-top: 1px solid #333;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .footer-icono {
+            color: var(--acento-deportivo);
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <header id="inicio">
+        <div class="logo">⚡ POWERFIT</div>
+        <p>Tu mejor versión empieza hoy</p>
+    </header>
+
+    
+    <nav>
+        <ul>
+            <li><a href="file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio2_ProgPaginaWeb.html#inicio">Inicio</a></li>
+            <li><a href="file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio2_ProgPaginaWeb.html#clases">Clases</a></li>
+            <li><a href="file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio2_ProgPaginaWeb.html#entrenadores">Entrenadores</a></li>
+            <li><a href="file:///C:/Users/Usuario/Desktop/Programacion%20III/Factor-X/Ejercicio2_ProgPaginaWeb.html#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+       
+        <section id="clases">
+            <h2>Clases Disponibles</h2>
+            <div class="contenedor-clases">
+                
+                <article>
+                    <h3>Musculación</h3>
+                    <p>Zona de peso libre y máquinas de última generación para desarrollar tu fuerza e hipertrofia con rutinas personalizadas.</p>
+                </article>
+
+                <article>
+                    <h3>Crossfit</h3>
+                    <p>Entrenamiento funcional de alta intensidad. Mejora tu resistencia, agilidad y potencia en clases grupales dinámicas.</p>
+                </article>
+
+                <article>
+                    <h3>Yoga</h3>
+                    <p>Encuentra el equilibrio perfecto entre cuerpo y mente. Clases guiadas para mejorar flexibilidad, postura y reducir el estrés.</p>
+                </article>
+
+            </div>
+        </section>
+
+        
+        <section id="horarios">
+            <h2>Horarios</h2>
+            <div class="contenedor-horarios">
+                <ul>
+                    <li><span class="dia">Lunes a Viernes</span> <span>06:00 - 23:00 hs</span></li>
+                    <li><span class="dia">Sábados</span> <span>08:00 - 20:00 hs</span></li>
+                    <li><span class="dia">Domingos y Feriados</span> <span>09:00 - 14:00 hs</span></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    
+    <footer id="contacto">
+        <p><span class="footer-icono">📞</span> <strong>Teléfono:</strong> +54 9 11 1234-5678</p>
+        <p><span class="footer-icono">📍</span> <strong>Dirección:</strong> Av. Fuerza y Salud 456, Ciudad</p>
+    </footer>
+
+
+</body></html>
